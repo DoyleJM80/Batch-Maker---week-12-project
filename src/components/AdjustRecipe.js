@@ -8,7 +8,7 @@ export default class AdjustRecipe extends Component {
   render() {
     return(
       <div>
-        <div className="flex">
+        <div className="flex space-around">
           <h3>Makes <input type="text"/> Servings</h3>
           <form>
             <input type="radio" name="measurement"/> US
