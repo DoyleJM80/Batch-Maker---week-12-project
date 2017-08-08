@@ -10,8 +10,10 @@ export default class Header extends Component {
       <nav>
         <p>The kitchen is yours, Chef!</p>
         <h2>Batch Maker</h2>
+
         <NavLink exact to="/Login"><button>Login</button></NavLink>
         <NavLink exact to="/Home"><button>Home</button></NavLink>
+        <NavLink exact to="/adjust-recipe"><button>Adjust</button></NavLink>
       </nav>
     );
   };

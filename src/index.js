@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import BaseLayout from './components/BaseLayout';
 import Login from './components/Login';
 import Home from './components/Home';
+import AdjustRecipe from './components/AdjustRecipe';
 
 import reducers from './reducers';
 import {Provider} from 'react-redux';
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/login" component={Login}/>
           <Route path="/home" component={Home}/>
+          <Route path="/adjust-recipe" component={AdjustRecipe}/>
         </Switch>
       </BaseLayout>
     </BrowserRouter>
