@@ -17,24 +17,6 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-let object = {
-  name: 'test'
-}
-
-// import {PARSE_API_URL, PARSE_HEADERS} from './utility/parse';
-//
-// fetch(`${PARSE_API_URL}/classes/Recipe`, {
-//       method: "POST",
-//       body: JSON.stringify(object),
-//       headers: PARSE_HEADERS
-//     })
-//     .then(response => {
-//       console.log('new recipe added');
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     });
-
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
