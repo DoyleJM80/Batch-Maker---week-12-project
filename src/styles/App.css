@@ -55,6 +55,11 @@
   height: 5%;
 }
 
+.textarea-size {
+  width: 90%;
+  height: 20%;
+}
+
 .form-input {
   padding-left: 1%;
   color: rgb(0, 0, 0);
@@ -85,6 +90,10 @@
   color: rgb(0, 0, 0);
 }
 
+.margin-top {
+  margin-top: 2%;
+}
+
 /*--body--*/
 
 body {
@@ -92,7 +101,13 @@ body {
 }
 
 /*--header--*/
+.header-p {
+  padding-top: .8%;
+}
 
+.header-buttons {
+  padding-top: 2%;
+}
 
 /*--signin--*/
 /*--signup--*/
