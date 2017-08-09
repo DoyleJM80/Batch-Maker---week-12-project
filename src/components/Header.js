@@ -8,8 +8,8 @@ export default class Header extends Component {
   render() {
     return(
       <nav className="flex space-around dark-grey">
-        <p className="header-p">The kitchen is yours, Chef!</p>
-        <h2>Batch Maker</h2>
+        <p className="header-p light-grey-text">The kitchen is yours, Chef!</p>
+        <h2 className="light-grey-text">Batch Maker</h2>
         <div className="header-buttons">
           <NavLink exact to="/sign-in"><button>Sign In</button></NavLink>
           <NavLink exact to="/Home"><button>Home</button></NavLink>

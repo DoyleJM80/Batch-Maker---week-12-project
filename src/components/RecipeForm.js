@@ -44,7 +44,12 @@ export default class RecipeForm extends Component {
     event.preventDefault();
     let object = {
       name: event.target.name.value,
-      by: event.target.by.value
+      by: event.target.by.value,
+      prep_time: event.target.prepTime.value,
+      cook_time: event.target.cookTime.value,
+      cook_temp: event.target.cookTemp.value,
+      amount: Number(event.target.amount.value),
+      amount_type: event.target.amountType.value
     }
     console.log(object.name);
     fetch(`${PARSE_API_URL}/classes/Recipe`, {
@@ -76,11 +81,11 @@ export default class RecipeForm extends Component {
               <option value="dessert">Dessert</option>
             </select>
 
-            <input type="text" name="prep-time" placeholder="Prep Time" onChange={this.handleInput}/>
+            <input type="text" name="prepTime" placeholder="Prep Time" onChange={this.handleInput}/>
 
-            <input type="text" name="cook-time" placeholder="Cook Time" onChange={this.handleInput}/>
+            <input type="text" name="cookTime" placeholder="Cook Time" onChange={this.handleInput}/>
 
-            <input type="text" name="cook-temp" placeholder="Cook Temp" onChange={this.handleInput}/>
+            <input type="text" name="cookTemp" placeholder="Cook Temp" onChange={this.handleInput}/>
 
             <select onChange={this.handleInput}>
               <option value="F">F</option>
@@ -90,8 +95,8 @@ export default class RecipeForm extends Component {
             <h5>This recipe will make</h5>
 
             <input type="text" name="amount" placeholder="Amount" onChange={this.handleInput}/>
-handleInput
-            <input type="text" name="amount-type" placeholder="cookies, loaves, etc" onChange={this.handleInput}/>
+
+            <input type="text" name="amountType" placeholder="cookies, loaves, etc" onChange={this.handleInput}/>
 
 
             <h2>Step </h2>
