@@ -5,7 +5,6 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import BaseLayout from './components/BaseLayout';
-import Login from './components/Login';
 import Home from './components/Home';
 import AdjustRecipe from './components/AdjustRecipe';
 import SignUp from './components/SignUp';

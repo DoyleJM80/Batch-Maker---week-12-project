@@ -20,10 +20,12 @@ export function signup(user) {
 };
 
 export function signin(user) {
+  console.log('user', user);
   return function(dispatch) {
     fetch(`${PARSE_API_URL}/login?${$.param(user)}`, {headers: PARSE_HEADERS})
     .then((response) => {
-      response.json().then((result) => {
+      response.json()
+    .then((result) => {
         dispatch({type: 'AUTH_USER'});
         localStorage.setItem('user', JSON.stringify(result));
       }).catch((err) => {

@@ -1,119 +1,12 @@
-.flex {
-  display: flex;
-}
-
-.space-around {
-  justify-content: space-around;
-}
-
-.column {
-  flex-direction: column;
-}
-
-.col-4 {
-  width: 33vw;
-}
-
-.col-8 {
-  width: 66vw;
-}
-
-.col-12 {
-  width: 100vw;
-}
-
-.hor-center {
-  margin: 0 auto;
-}
-
-.form-size {
-  height: 70vh;
-}
-
-.no-border {
-  border-style: none;
-}
-
-.label-align {
-  margin-left: 2%;
-}
-
-.dark-grey {
-  background-color: rgb(50, 50, 50);
-}
-
-.light-grey {
-  background-color: rgb(150, 150, 150);
-}
-
-.light-grey-text {
-  color: rgb(150, 150, 150);
-}
-
-.input-size {
-  width: 90%;
-  height: 5%;
-}
-
-.textarea-size {
-  width: 90%;
-  height: 20%;
-}
-
-.form-input {
-  padding-left: 1%;
-  color: rgb(0, 0, 0);
-  font-weight: 500;
-}
-
-.submit-button {
-  max-width: 80px;
-  margin-left: 2%;
-  border-radius: 5%;
-  border-style: none;
-}
-
-.submit-button:hover {
-  background-color: rgb(80, 80, 80);
-}
-
-.sign-in-button {
-  color: rgb(255, 255, 255);
-  font-size: 16px;
-}
-
-.sign-in-button:hover {
-  color: rgb(150, 150, 150);
-}
-
-::placeholder {
-  color: rgb(0, 0, 0);
-}
-
 .margin-top {
-  margin-top: 2%;
+  margin-top: 7%;
 }
 
-.margin-5 {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.banner {
+  background-color: rgb(240, 240, 240);
+  height: 7%;
 }
-
-/*--body--*/
 
 body {
-  background: rgb(150, 150, 150);
+  background-color: rgb(250, 250, 250);
 }
-
-/*--header--*/
-.header-p {
-  padding-top: .8%;
-}
-
-.header-buttons {
-  padding-top: 2%;
-}
-
-/*--signin--*/
-/*--signup--*/
-/*--footer--*/

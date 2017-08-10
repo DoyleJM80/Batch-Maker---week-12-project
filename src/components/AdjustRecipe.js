@@ -7,15 +7,19 @@ export default class AdjustRecipe extends Component {
 
   render() {
     return(
-      <div className="margin-top">
-        <div className="flex space-around col-8 hor-center dark-grey form-size">
-          <div className="col-12">
-            <h3>Makes <input type="text"/> Servings</h3>
-            <form>
-              <input type="radio" name="measurement"/> US
-              <input type="radio" name="measurement"/> Metric
+      <div className="margin-top container">
+        <div className="">
+          <div className="form-group">
+            <label class="control-label">Makes <input className="form-control" type="text"/> Servings</label>
+            <form className="">
+              <div className="radio">
+                <input className="" type="radio" name="measurement"/> US
+              </div>
+              <div className="radio">
+                <input className="" type="radio" name="measurement"/> Metric
+              </div>
             </form>
-            <button>Adjust Recipe</button>
+            <button className="btn">Adjust Recipe</button>
           </div>
         </div>
       </div>

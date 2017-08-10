@@ -7,38 +7,41 @@ export default class RecipeForm extends Component {
     super();
 
     this.state = {
-    //   name: '',
-    //   by: '',
-    //   type:'',
-    //   prep_time: '',
-    //   cook_time: '',
-    //   cook_temp: '',
-    //   amount: 0,
-    //   amount_tpye: '',
-    //   steps: []
-      steps: [
-        {
-          ingredients: [
-            {
-              amount: 0,
-              unit: '',
-              name: ''
-            }
-          ],
-          directions: ''
-        }
-      ]
+      steps: [],
+      ingredients: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleAddIngredient = this.handleAddIngredient.bind(this);
+    this.handleAddStep = this.handleAddStep.bind(this);
   };
 
   handleInput(event) {
     let object = {};
     object[event.target.name] = event.target.value;
     this.setState(object);
+    console.log('value', event.target.name.value);
   };
 
+  handleAddIngredient(event) {
+    let ingredients = this.state.ingredients;
+    let ingredient = {
+      quantity: this.state.quantity,
+      unit: this.state.unit,
+      item: this.state.item
+    };
+    ingredients.push(ingredient);
+    this.setState({ ingredients });
+    console.log(this.state.ingredients);
+  };
+
+  handleAddStep(event) {
+    let setps = this.state.steps;
+    let step = {
+      ingredients: this.state.ingredients,
+      instructions: this.state.instructions
+    }
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -46,11 +49,15 @@ export default class RecipeForm extends Component {
     let object = {
       name: event.target.name.value,
       by: event.target.by.value,
+      type: event.target.type.value,
       prep_time: event.target.prepTime.value,
       cook_time: event.target.cookTime.value,
       cook_temp: event.target.cookTemp.value,
       amount: Number(event.target.amount.value),
-      amount_type: event.target.amountType.value
+      amount_type: event.target.amountType.value,
+      temp_type: event.target.tempType.value,
+      notes: event.target.notes.value,
+      steps: this.state.steps
     }
     console.log(object.name);
     fetch(`${PARSE_API_URL}/classes/Recipe`, {
@@ -68,67 +75,95 @@ export default class RecipeForm extends Component {
   };
 
   render() {
+
+    let ingredientList = this.state.ingredients.map((ingredient, index) => {
+      return(
+        <div key={index}>
+          <span>{ingredient.quantity} </span>
+          <span>{ingredient.unit} </span>
+          <span>{ingredient.item} </span>
+          <button className="btn btn-danger" type="button">-</button>
+        </div>
+      )
+    })
+
+
     return(
       <div className="margin-top">
         <div>
-          <form className="flex column col-8 hor-center space-around dark-grey" onSubmit={this.handleSubmit}>
-            <input className="input-size hor-center light-grey form-input no-border" type="text" name="name" placeholder="Recipe Name" id="recipe-name" onChange={this.handleInput}/>
+          <form className="form-group container" onSubmit={this.handleSubmit}>
+            <div className="form-inline">
+              <input className="form-control" type="text" name="name" placeholder="Recipe Name" id="recipe-name" onChange={this.handleInput}/>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="by" placeholder="User Name" id="by" onChange={this.handleInput}/>
+              <input className="form-control" type="text" name="by" placeholder="Author" id="by" onChange={this.handleInput}/>
 
-            <select className="input-size hor-center light-grey form-input no-border margin-5" onChange={this.handleInput}>
-              <option value="" disabled selected hidden>Recipe Type</option>
-              <option value="appetizer">Appetizer</option>
-              <option value="entree">Entree</option>
-              <option value="dessert">Dessert</option>
-            </select>
+            </div>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="prepTime" placeholder="Prep Time" onChange={this.handleInput}/>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="cookTime" placeholder="Cook Time" onChange={this.handleInput}/>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="cookTemp" placeholder="Cook Temp" onChange={this.handleInput}/>
+            <div className="form-inline">
+              <select className="form-control" name="type" onChange={this.handleInput}>
+                <option value="" disabled selected hidden>Recipe Type</option>
+                <option value="appetizer">Appetizer</option>
+                <option value="entree">Entree</option>
+                <option value="dessert">Dessert</option>
+              </select>
 
-            <select className="input-size hor-center light-grey form-input no-border margin-5" onChange={this.handleInput}>
-              <option value="F">F</option>
-              <option value="C">C</option>
-            </select>
+              <input className="form-control" type="text" name="prepTime" placeholder="Prep Time" onChange={this.handleInput}/>
+
+              <input className="form-control" type="text" name="cookTime" placeholder="Cook Time" onChange={this.handleInput}/>
+
+              <input className="form-control" type="text" name="cookTemp" placeholder="Cook Temp" onChange={this.handleInput}/>
+
+              <select className="form-control" name="tempType" onChange={this.handleInput}>
+                <option value="F">F</option>
+                <option value="C">C</option>
+              </select>
+            </div>
+
 
             <h5>This recipe will make</h5>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="amount" placeholder="Amount" onChange={this.handleInput}/>
+            <div className="form-inline">
+              <input className="form-control" type="text" name="amount" placeholder="Amount" onChange={this.handleInput}/>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="amountType" placeholder="cookies, loaves, etc" onChange={this.handleInput}/>
+              <input className="form-control" type="text" name="amountType" placeholder="cookies, loaves, etc" onChange={this.handleInput}/>
+            </div>
+
 
 
             <h2>Step </h2>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="quantity" placeholder="Amount" onChange={this.handleInput}/>
+            {ingredientList}
+            <div className="form-inline">
+              <input className="form-control" type="number" name="quantity" placeholder="Amount" onChange={this.handleInput}/>
 
-            <select className="input-size hor-center light-grey form-input no-border margin-5" onChange={this.handleInput}>
-              <option value="" disabled selected hidden>Unit</option>
-              <option value="cups">Cups</option>
-              <option value="tbs">Tbs</option>
-              <option value="tsp">Tsp</option>
-              <option value="oz">Oz</option>
-              <option value="pint">Pint</option>
-              <option value="quart">Quart</option>
-              <option value="gallon">Gallon</option>
-            </select>
+              <select className="form-control" name="unit" onChange={this.handleInput}>
+                <option value="" disabled selected hidden>Unit</option>
+                <option value="cups">Cups</option>
+                <option value="tbs">Tbs</option>
+                <option value="tsp">Tsp</option>
+                <option value="oz">Oz</option>
+                <option value="pint">Pint</option>
+                <option value="quart">Quart</option>
+                <option value="gallon">Gallon</option>
+              </select>
 
-            <input className="input-size hor-center light-grey form-input no-border margin-5" type="text" name="ingredient" placeholder="Ingredient" onChange={this.handleInput}/>
+              <input className="form-control" type="text" name="item" placeholder="Ingredient" onChange={this.handleInput}/>
 
-            <button className="submit-button light-grey">+</button>
+              <button className="btn btn-primary" type="button" onClick={this.handleAddIngredient}>+</button>
+            </div>
 
-            <textarea className="textarea-size hor-center light-grey form-input no-border margin-5" type="text" name="confirm-password" placeholder="What directions go with this step?" id="instructions" onChange={this.handleInput}/>
 
-            <button className="submit-button light-grey">Add anoter step</button>
+            <textarea className="form-control" type="text" name="confirm-password" placeholder="What directions go with this step?" id="instructions" onChange={this.handleInput}/>
+
+            <button className="btn btn-primary" type="button">Add another step</button>
 
             <h2>Personal Notes</h2>
 
             <label htmlFor="notes">Personal Notes</label>
-            <textarea className="textarea-size hor-center light-grey form-input no-border margin-5" type="text" name="notes" id="notes" onChange={this.handleInput}/>
-            <input className="submit-button light-grey margin-5" type="submit"/>
+            <textarea className="form-control" type="text" name="notes" id="notes" onChange={this.handleInput}/>
+            <input className="btn btn-primary" type="submit"/>
           </form>
         </div>
       </div>

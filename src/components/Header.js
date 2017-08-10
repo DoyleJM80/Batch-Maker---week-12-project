@@ -7,15 +7,13 @@ export default class Header extends Component {
   };
   render() {
     return(
-      <nav className="flex space-around dark-grey">
-        <p className="header-p light-grey-text">The kitchen is yours, Chef!</p>
-        <h2 className="light-grey-text">Batch Maker</h2>
-        <div className="header-buttons">
-          <NavLink exact to="/sign-in"><button>Sign In</button></NavLink>
-          <NavLink exact to="/Home"><button>Home</button></NavLink>
-          <NavLink exact to="/adjust-recipe"><button>Adjust</button></NavLink>
-          <NavLink exact to="/sign-up"><button>Sign Up</button></NavLink>
-          <NavLink exact to="/add-recipe"><button>Add Recipe</button></NavLink>
+      <nav className="form-inline fixed-top banner">
+        <h2 className="col-lg-4 text-center">The kitchen is yours, Chef!</h2>
+        <h2 className="col-lg-4 text-center">Batch Maker</h2>
+        <div className="col-lg-4 text-center">
+          <NavLink exact to="/Home"><button className="btn btn-primary">Home</button></NavLink>
+          <NavLink exact to="/adjust-recipe"><button className="btn btn-primary">Adjust</button></NavLink>
+          <NavLink exact to="/add-recipe"><button className="btn btn-primary">Add Recipe</button></NavLink>
         </div>
       </nav>
     );
