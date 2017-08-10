@@ -155,7 +155,7 @@ export default class RecipeForm extends Component {
             </div>
 
 
-            <textarea className="form-control" type="text" name="confirm-password" placeholder="What directions go with this step?" id="instructions" onChange={this.handleInput}/>
+            <textarea className="form-control" type="text" name="instructions" placeholder="What directions go with this step?" id="instructions" onChange={this.handleInput}/>
 
             <button className="btn btn-primary" type="button">Add another step</button>
 
