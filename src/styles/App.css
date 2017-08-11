@@ -10,3 +10,14 @@
 body {
   background-color: rgb(250, 250, 250);
 }
+
+.step-div {
+  height: 100px;
+  width: 50%;
+  border-style: solid;
+}
+
+.ingredient-div {
+  width: 47%;
+  border-style: solid;
+}

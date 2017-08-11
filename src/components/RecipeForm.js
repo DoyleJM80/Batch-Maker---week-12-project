@@ -32,7 +32,6 @@ export default class RecipeForm extends Component {
     };
     ingredients.push(ingredient);
     this.setState({ ingredients, quantity: 0, unit: '', item: '' });
-
     console.log(this.state.ingredients);
   };
 
@@ -85,7 +84,7 @@ export default class RecipeForm extends Component {
 
     let ingredientList = this.state.ingredients.map((ingredient, index) => {
       return(
-        <div key={index}>
+        <div key={index} className="ingredient-div">
           <span>{ingredient.quantity} </span>
           <span>{ingredient.unit} </span>
           <span>{ingredient.item} </span>
@@ -95,12 +94,22 @@ export default class RecipeForm extends Component {
     });
 
     let allSteps = this.state.steps.map((step, index) => {
+      let stepIngredients = step.ingredients.map((stepIngredient, index) => {
+        return(
+          <div key={index} className="ingredient-div">
+            <span>{stepIngredient.quantity}</span>
+            <span>{stepIngredient.unit}</span>
+            <span>{stepIngredient.item}</span>
+          </div>
+        );
+      });
       return(
-        <div key={index}>
-            <p>{step.instructions}</p>
+        <div key={index} className="step-div">
+          {stepIngredients}
+          <p>{step.instructions}</p>
         </div>
-      )
-    })
+      );
+    });
 
 
     return(
@@ -153,8 +162,8 @@ export default class RecipeForm extends Component {
             <div className="form-inline">
               <input className="form-control" type="number" name="quantity" placeholder="Amount" onChange={this.handleInput}/>
 
-              <select className="form-control" name="unit" onChange={this.handleInput}>
-                <option value="" disabled hidden>Unit</option>
+              <select className="form-control" name="unit" onChange={this.handleInput} defaultValue="Unit">
+                <option value="" hidden>Unit</option>
                 <option value="cups(s)">Cups(s)</option>
                 <option value="tbs(s)">Tbs(s)</option>
                 <option value="tsp(s)">Tsp(s)</option>
