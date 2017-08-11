@@ -31,7 +31,8 @@ export default class RecipeForm extends Component {
       item: this.state.item
     };
     ingredients.push(ingredient);
-    this.setState({ ingredients });
+    this.setState({ ingredients, quantity: 0, unit: '', item: '' });
+
     console.log(this.state.ingredients);
   };
 
@@ -42,7 +43,7 @@ export default class RecipeForm extends Component {
       instructions: this.state.instructions
     }
     steps.push(step);
-    this.setState({steps});
+    this.setState({steps, ingredients: []});
     console.log(this.state.steps);
   };
 
@@ -75,6 +76,9 @@ export default class RecipeForm extends Component {
           console.log(err)
         });
       event.target.reset();
+      this.setState({
+        steps: []
+      })
   };
 
   render() {
@@ -114,7 +118,7 @@ export default class RecipeForm extends Component {
 
             <div className="form-inline">
               <select className="form-control" name="type" onChange={this.handleInput}>
-                <option value="" disabled selected hidden>Recipe Type</option>
+                <option value="" disabled hidden>Recipe Type</option>
                 <option value="appetizer">Appetizer</option>
                 <option value="entree">Entree</option>
                 <option value="dessert">Dessert</option>
@@ -150,14 +154,15 @@ export default class RecipeForm extends Component {
               <input className="form-control" type="number" name="quantity" placeholder="Amount" onChange={this.handleInput}/>
 
               <select className="form-control" name="unit" onChange={this.handleInput}>
-                <option value="" disabled selected hidden>Unit</option>
-                <option value="cups">Cups</option>
-                <option value="tbs">Tbs</option>
-                <option value="tsp">Tsp</option>
-                <option value="oz">Oz</option>
-                <option value="pint">Pint</option>
-                <option value="quart">Quart</option>
-                <option value="gallon">Gallon</option>
+                <option value="" disabled hidden>Unit</option>
+                <option value="cups(s)">Cups(s)</option>
+                <option value="tbs(s)">Tbs(s)</option>
+                <option value="tsp(s)">Tsp(s)</option>
+                <option value="oz(s)">Oz(s)</option>
+                <option value="pint(s)">Pint(s)</option>
+                <option value="quart(s)">Quart(s)</option>
+                <option value="Gallon(s)">Gallon(s)</option>
+                <option value="Slice(s)">Slice(s)</option>
               </select>
 
               <input className="form-control" type="text" name="item" placeholder="Ingredient" onChange={this.handleInput}/>
