@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import {PARSE_API_URL, PARSE_HEADERS} from '../utility/parse';
+import Ingredient from './Ingredient';
 
 export default class RecipeForm extends Component {
   constructor() {
     super();
 
     this.state = {
+      quantity: 0,
+      unit: "unit",
+      item: '',
       steps: [],
       ingredients: []
     };
@@ -14,6 +18,7 @@ export default class RecipeForm extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
     this.handleAddStep = this.handleAddStep.bind(this);
+    this.handleRemoveIngredient = this.handleRemoveIngredient.bind(this);
   };
 
   handleInput(event) {
@@ -33,6 +38,13 @@ export default class RecipeForm extends Component {
     ingredients.push(ingredient);
     this.setState({ ingredients, quantity: 0, unit: '', item: '' });
     console.log(this.state.ingredients);
+  };
+
+  handleRemoveIngredient(index) {
+      let ingredients = this.state.ingredients;
+      // ingredients[index]
+      ingredients.splice(index, 1);
+      this.setState({ingredients})
   };
 
   handleAddStep(event) {
@@ -83,14 +95,7 @@ export default class RecipeForm extends Component {
   render() {
 
     let ingredientList = this.state.ingredients.map((ingredient, index) => {
-      return(
-        <div key={index} className="ingredient-div">
-          <span>{ingredient.quantity} </span>
-          <span>{ingredient.unit} </span>
-          <span>{ingredient.item} </span>
-          <button className="btn btn-danger" type="button">-</button>
-        </div>
-      );
+      return <Ingredient key={index} index={index} ingredient={ingredient} handleRemoveIngredient={this.handleRemoveIngredient}/>;
     });
 
     let allSteps = this.state.steps.map((step, index) => {
@@ -120,10 +125,7 @@ export default class RecipeForm extends Component {
               <input className="form-control" type="text" name="name" placeholder="Recipe Name" id="recipe-name" onChange={this.handleInput}/>
 
               <input className="form-control" type="text" name="by" placeholder="Author" id="by" onChange={this.handleInput}/>
-
             </div>
-
-
 
             <div className="form-inline">
               <select className="form-control" name="type" onChange={this.handleInput}>
@@ -142,6 +144,8 @@ export default class RecipeForm extends Component {
               <select className="form-control" name="tempType" onChange={this.handleInput}>
                 <option value="F">F</option>
                 <option value="C">C</option>
+                <option value="High">High</option>
+                <option value="Low">Low</option>
               </select>
             </div>
 
@@ -172,6 +176,8 @@ export default class RecipeForm extends Component {
                 <option value="quart(s)">Quart(s)</option>
                 <option value="Gallon(s)">Gallon(s)</option>
                 <option value="Slice(s)">Slice(s)</option>
+                <option value="Whole">Whole</option>
+                <option value="Clove(s)">Clove(s)</option>
               </select>
 
               <input className="form-control" type="text" name="item" placeholder="Ingredient" onChange={this.handleInput}/>

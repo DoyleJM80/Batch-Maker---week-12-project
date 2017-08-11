@@ -5,6 +5,8 @@ export default class AdjustRecipe extends Component {
     super();
   };
 
+  
+
   render() {
     return(
       <div className="margin-top container">
