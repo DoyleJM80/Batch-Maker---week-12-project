@@ -1,13 +1,42 @@
 import React, {Component} from 'react';
+import {PARSE_API_URL, PARSE_HEADERS} from '../utility/parse';
 
 export default class AdjustRecipe extends Component {
   constructor() {
     super();
+    this.state = {
+      recipes: []
+    };
   };
 
-  
+  componentDidMount() {
+    fetch(`${PARSE_API_URL}/classes/Recipe`, {headers: PARSE_HEADERS}).then((response) => {
+      response.json().then((result) => {
+        console.log(result);
+        this.setState({recipes: result.results});
+        console.log(this.state.recipes);
+      });
+    });
+  };
 
   render() {
+    let recipes = this.state.recipes.map((recipe, index) => {
+      return(
+        <div key={index}>
+          <h1>Recipe: {recipe.name}</h1>
+          <h4>By: {recipe.by}</h4>
+          <h4>Type: {recipe.type}</h4>
+          <h4>Prep Time: {recipe.prep_time}</h4>
+          <h4>Cook Time: {recipe.cook_time}</h4>
+          <h4>Cook Temp: {recipe.cook_temp}</h4>
+          <h4>Temp Type: {recipe.temp_type}</h4>
+          <h4>Amount: {recipe.amount}</h4>
+          <h4>Type: {recipe.amount_type}</h4>
+          {/* <h4>{recipe.steps}</h4> */}
+          <h4>Notes: {recipe.notes}</h4>
+        </div>
+      );
+    })
     return(
       <div className="margin-top container">
         <div className="">
@@ -23,6 +52,9 @@ export default class AdjustRecipe extends Component {
             </form>
             <button className="btn">Adjust Recipe</button>
           </div>
+        </div>
+        <div>
+          {recipes}
         </div>
       </div>
     );
