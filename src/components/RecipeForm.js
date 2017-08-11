@@ -36,11 +36,14 @@ export default class RecipeForm extends Component {
   };
 
   handleAddStep(event) {
-    let setps = this.state.steps;
+    let steps = this.state.steps;
     let step = {
       ingredients: this.state.ingredients,
       instructions: this.state.instructions
     }
+    steps.push(step);
+    this.setState({steps});
+    console.log(this.state.steps);
   };
 
   handleSubmit(event) {
@@ -83,6 +86,14 @@ export default class RecipeForm extends Component {
           <span>{ingredient.unit} </span>
           <span>{ingredient.item} </span>
           <button className="btn btn-danger" type="button">-</button>
+        </div>
+      );
+    });
+
+    let allSteps = this.state.steps.map((step, index) => {
+      return(
+        <div key={index}>
+            <p>{step.instructions}</p>
         </div>
       )
     })
@@ -131,7 +142,7 @@ export default class RecipeForm extends Component {
             </div>
 
 
-
+            {allSteps}
             <h2>Step </h2>
 
             {ingredientList}
@@ -157,7 +168,7 @@ export default class RecipeForm extends Component {
 
             <textarea className="form-control" type="text" name="instructions" placeholder="What directions go with this step?" id="instructions" onChange={this.handleInput}/>
 
-            <button className="btn btn-primary" type="button">Add another step</button>
+            <button className="btn btn-primary" type="button" onClick={this.handleAddStep}>Add another step</button>
 
             <h2>Personal Notes</h2>
 
