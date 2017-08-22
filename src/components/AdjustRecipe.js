@@ -21,6 +21,22 @@ export default class AdjustRecipe extends Component {
 
   render() {
     let recipes = this.state.recipes.map((recipe, index) => {
+      let steps = recipe.steps.map((step, index) => {
+        let ingredients = step.ingredients.map((ingredient, index) => {
+          return(
+            <div key={index}>
+              <h4>{ingredient.quantity} {ingredient.unit} {ingredient.item}</h4>
+            </div>
+          );
+        });
+        console.log(step);
+        return(
+          <div key={index}>
+            {ingredients}
+            <h4>{step.instructions}</h4>
+          </div>
+        );
+      });
       return(
         <div key={index}>
           <h1>Recipe: {recipe.name}</h1>
@@ -32,7 +48,7 @@ export default class AdjustRecipe extends Component {
           <h4>Temp Type: {recipe.temp_type}</h4>
           <h4>Amount: {recipe.amount}</h4>
           <h4>Type: {recipe.amount_type}</h4>
-          {/* <h4>{recipe.steps}</h4> */}
+          {steps}
           <h4>Notes: {recipe.notes}</h4>
         </div>
       );
@@ -60,3 +76,5 @@ export default class AdjustRecipe extends Component {
     );
   };
 };
+
+
