@@ -12,12 +12,12 @@ body {
 }
 
 .step-div {
-  height: 100px;
   width: 50%;
-  border-style: solid;
+  background-color: rgb(240, 240, 240);
 }
 
 .ingredient-div {
   width: 47%;
-  border-style: solid;
 }
+
+

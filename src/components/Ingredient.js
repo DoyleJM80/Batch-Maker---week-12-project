@@ -9,10 +9,9 @@ export default class Ingredient extends Component {
     console.log(this.props);
     return(
       <div className="ingredient-div">
-        <span>{this.props.ingredient.quantity} </span>
-        <span>{this.props.ingredient.unit} </span>
-        <span>{this.props.ingredient.item} </span>
-        <button className="btn btn-danger" type="button" onClick={()=>this.props.handleRemoveIngredient(this.props.index)}>-</button>
+        <ul>
+          <li>{this.props.ingredient.quantity} {this.props.ingredient.unit} {this.props.ingredient.item} <button className="btn btn-danger" type="button" onClick={()=>this.props.handleRemoveIngredient(this.props.index)}>-</button></li>
+        </ul>
       </div>
     );
   };

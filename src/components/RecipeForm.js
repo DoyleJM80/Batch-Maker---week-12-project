@@ -8,9 +8,9 @@ export default class RecipeForm extends Component {
     super();
 
     this.state = {
-      quantity: 0,
+      quantity: "Amount",
       unit: "unit",
-      item: '',
+      item: "Ingredient",
       steps: [],
       ingredients: []
     };
@@ -36,7 +36,7 @@ export default class RecipeForm extends Component {
       item: this.state.item
     };
     ingredients.push(ingredient);
-    this.setState({ ingredients, quantity: 0, unit: '', item: '' });
+    this.setState({ ingredients, quantity: 'Amount', unit: 'Unit', item: 'Ingredient' });
     console.log(this.state.ingredients);
   };
 
@@ -102,9 +102,9 @@ export default class RecipeForm extends Component {
       let stepIngredients = step.ingredients.map((stepIngredient, index) => {
         return(
           <div key={index} className="ingredient-div">
-            <span>{stepIngredient.quantity}</span>
-            <span>{stepIngredient.unit}</span>
-            <span>{stepIngredient.item}</span>
+            <ul>
+              <li>{stepIngredient.quantity} {stepIngredient.unit} {stepIngredient.item}</li>
+            </ul>
           </div>
         );
       });
@@ -146,6 +146,8 @@ export default class RecipeForm extends Component {
                 <option value="C">C</option>
                 <option value="High">High</option>
                 <option value="Low">Low</option>
+                <option value="Boil">Boil</option>
+                <option value="Simmer">Simmer</option>
               </select>
             </div>
 
@@ -177,6 +179,9 @@ export default class RecipeForm extends Component {
                 <option value="Gallon(s)">Gallon(s)</option>
                 <option value="Slice(s)">Slice(s)</option>
                 <option value="Whole">Whole</option>
+                <option value="Half">Half</option>
+                <option value="Quarter">Quarter</option>
+                <option value="Third">Third</option>
                 <option value="Clove(s)">Clove(s)</option>
               </select>
 

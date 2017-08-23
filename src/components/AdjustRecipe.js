@@ -25,13 +25,16 @@ export default class AdjustRecipe extends Component {
         let ingredients = step.ingredients.map((ingredient, index) => {
           return(
             <div key={index}>
-              <h4>{ingredient.quantity} {ingredient.unit} {ingredient.item}</h4>
+              <ul>
+                <li>{ingredient.quantity} {ingredient.unit} {ingredient.item}</li>
+              </ul>
+              
             </div>
           );
         });
         console.log(step);
         return(
-          <div key={index}>
+          <div key={index} className="step-div">
             {ingredients}
             <h4>{step.instructions}</h4>
           </div>
