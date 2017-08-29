@@ -41,3 +41,25 @@ export function signin(user) {
     })
   };
 };
+
+// export function fetchRecipes() {
+//   return function(dispatch) {
+//     fetch(`$PARSE_API_URL/classes/Recipe`, {headers: PARSE_HEADERS}).then((response) => {
+//       if(!response.ok) {
+//         throw Error(response.statusText);
+//       }  
+//       response.json().then((result) => {
+//         dispatch({type: ''})
+//       }).catch((err) => {
+//         console.log(err);
+//       });
+//     });
+//   };
+  // fetch(`${PARSE_API_URL}/classes/Recipe`, {headers: PARSE_HEADERS}).then((response) => {
+  //     response.json().then((result) => {
+  //       console.log(result);
+  //       this.setState({recipes: result.results});
+  //       console.log(this.state.recipes);
+  //     });
+  //   });
+// }
