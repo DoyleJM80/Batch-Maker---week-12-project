@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {PARSE_API_URL, PARSE_HEADERS} from '../utility/parse';
+import { Link, NavLink } from 'react-router-dom';
 
 export default class Home extends Component {
   constructor() {
@@ -20,10 +21,12 @@ export default class Home extends Component {
 
   render() {
     let recipes = this.state.recipes.map((recipe, index) => {
+      console.log('recipe', recipe);
+      console.log('recipes', recipes);
       return(
         <div>
           <ul>
-            <li><a href="#">{recipe.name}</a></li>
+             <li><Link to={`/adjust-recipe/${recipe.objectId}`}>{recipe.name}</Link></li> 
           </ul>
         </div>
       )

@@ -32,7 +32,7 @@ ReactDOM.render(
           <Route path="/sign-up" component={SignUp}/>
           <Route path="/sign-in" component={SignIn}/>
           <Route path="/home" component={requireAuth(Home)}/>
-          <Route path="/adjust-recipe" component={requireAuth(AdjustRecipe)}/>
+          <Route path="/adjust-recipe/:id" component={requireAuth(AdjustRecipe)}/>
           <Route path="/add-recipe" component={requireAuth(RecipeForm)}/>
         </Switch>
       </BaseLayout>
